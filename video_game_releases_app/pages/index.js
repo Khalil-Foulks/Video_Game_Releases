@@ -14,10 +14,11 @@ export default function Home({dates}) {
 
 
 export const getStaticProps = async () => {  
-  let res = "nothing"
+  let res = []
+  const bodyQuery = 'fields *; where y = 2020; sort date asc; limit 500;'
 
   await axiosWithAuth()
-  .post("/release_dates")
+  .post("/release_dates", bodyQuery)
   .then((response) => {
     console.log("Release Dates", response)
     res = response.data
